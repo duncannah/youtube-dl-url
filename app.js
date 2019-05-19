@@ -31,8 +31,6 @@ const updateYTDL = () =>
 		}
 	});
 
-updateYTDL().then(() => setInterval(updateYTDL, 1000 * 60 * 60 * 6));
-
 app.get("/favicon.ico", (_, res) => {
 	res.status(404).send();
 });
@@ -191,4 +189,9 @@ app.get("*", async (req, res) => {
 	*/
 });
 
-app.listen(PORT, () => console.log("Server listening on port " + PORT));
+fs.ensureDir(path.join(__dirname, "/bin")).then(() =>
+	updateYTDL().then(() => {
+		setInterval(updateYTDL, 1000 * 60 * 60 * 6);
+		app.listen(PORT, () => console.log("Server listening on port " + PORT));
+	})
+);
