@@ -38,7 +38,7 @@ app.get("/favicon.ico", (_, res) => {
 app.get("*", async (req, res) => {
 	const BASE_URL = req.protocol + "://" + req.headers.host;
 
-	const url = req.url.substr(1);
+	const url = req.url.substr(1).replace(/^http:\//, "http://").replace(/^https:\//, "https://");
 	if (
 		!url.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/) &&
 		!url.match(/^\w+:.+$/) // ytdl extractor
