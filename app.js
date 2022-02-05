@@ -22,7 +22,7 @@ const updateYTDL = () =>
 		} catch (error) {
 			let tmpName = YTDL_PATH + "." + new Date().getTime();
 
-			request("https://yt-dl.org/downloads/latest/youtube-dl")
+			request("https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp")
 				.pipe(fs.createWriteStream(tmpName))
 				.on("finish", async () => {
 					await fs.move(tmpName, YTDL_PATH, { overwrite: true });
