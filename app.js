@@ -92,6 +92,8 @@ app.get("*", async (req, res) => {
 			}
 		}
 
+		res.type("application/x-mpegURL");
+
 		res.send(m3u8);
 	} else {
 		const bestDirectFormat = json.formats
